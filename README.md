@@ -1,8 +1,6 @@
 <p align="center">
 <img src="docs/civicx-logo.svg" alt="CivicX logo" width="150" />
 </p> <h1 align="center">CivicX</h1> <p align="center"><strong>Turn local problems into visible action.</strong></p> <p align="center">
-  <a href="https://civicintel-gkvdzzdx.manus.space">Live website</a>
-  ·
   <a href="https://github.com/thakurakshat1008-coder/civicx">Source repository</a>
 </p> <p align="center">
   <img src="https://img.shields.io/badge/status-production--oriented-195c51?style=flat-square" alt="Production-oriented" />
