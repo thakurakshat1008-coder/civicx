@@ -217,7 +217,7 @@ The architecture leaves room for multiple cities, ward-level analytics, municipa
 
 - Notification view structure.
 
-- Secure sign-in through Manus OAuth.
+- Secure OAuth sign-in.
 
 - Logout flow.
 
@@ -343,7 +343,7 @@ CivicX uses a modular full-stack structure with typed contracts between the clie
                 │
 ┌───────────────▼─────────────────────────────────────────┐
 │ External platform services                               │
-│ Manus OAuth · Google Maps proxy · optional LLM support  │
+│ OAuth authentication · Google Maps proxy · optional LLM support │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -397,7 +397,7 @@ CivicX uses a modular full-stack structure with typed contracts between the clie
 | API | tRPC 11 |
 | Server | Express 4, Node.js |
 | Database | MySQL / TiDB through Drizzle ORM |
-| Authentication | Manus OAuth |
+| Authentication | OAuth |
 | Storage | Built-in secure object storage |
 | Mapping | Google Maps proxy integration |
 | Testing | Vitest, TypeScript checks |
