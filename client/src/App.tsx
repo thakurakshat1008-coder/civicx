@@ -18,6 +18,11 @@ import { toast } from "sonner";
 
 const categories = ["Streetlight", "Garbage", "Road Damage", "Water Leakage", "Drainage", "Traffic", "Pollution", "Public Infrastructure", "Environment", "Other"] as const;
 const severities = ["Low", "Medium", "High", "Critical"] as const;
+const demoIssues = [
+  { id: "demo-delhi-1", title: "Demo: Streetlight needs attention", latitude: "28.6139", longitude: "77.2090", category: "Streetlight", status: "REPORTED" },
+  { id: "demo-noida-1", title: "Demo: Road surface check", latitude: "28.5355", longitude: "77.3910", category: "Road Damage", status: "IN_PROGRESS" },
+  { id: "demo-gurugram-1", title: "Demo: Public bin overflow", latitude: "28.4595", longitude: "77.0266", category: "Garbage", status: "RESOLVED" },
+] as const;
 
 function Shell({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -75,21 +80,26 @@ function ReportForm() {
 
 function MapPanel() {
   const { data: issues = [], isLoading } = trpc.issues.list.useQuery({}, { refetchInterval: 15000 });
+  const mapIssues = issues.length ? issues : demoIssues;
+  const showingDemo = issues.length === 0;
   const markers = useRef<google.maps.marker.AdvancedMarkerElement[]>([]);
-  const handleMapReady = (map: google.maps.Map) => {
+  const mapInstance = useRef<google.maps.Map | null>(null);
+  const renderMarkers = (map: google.maps.Map) => {
     markers.current.forEach(marker => marker.map = null);
-    markers.current = issues.slice(0, 100).map(issue => {
+    markers.current = mapIssues.slice(0, 100).map(issue => {
       const marker = new google.maps.marker.AdvancedMarkerElement({ map, position: { lat: Number(issue.latitude), lng: Number(issue.longitude) }, title: issue.title });
-      marker.addListener('click', () => { window.location.href = `/issues/${issue.id}`; });
+      marker.addListener('click', () => { if (!String(issue.id).startsWith("demo-")) window.location.href = `/issues/${issue.id}`; });
       return marker;
     });
   };
+  const handleMapReady = (map: google.maps.Map) => { mapInstance.current = map; renderMarkers(map); };
+  useEffect(() => { if (mapInstance.current) renderMarkers(mapInstance.current); }, [issues]);
   return <div className="grid gap-6 lg:grid-cols-[1.35fr_.65fr]">
     <div className="surface-strong overflow-hidden rounded-[28px]">
-      <div className="flex items-start justify-between p-6 md:p-8"><div><span className="rounded-full bg-[#e5eee7] px-3 py-1 text-xs font-bold tracking-[.16em] text-[#195c51]">GOOGLE MAPS · NCR / INDIA</span><h2 className="mt-4 font-display text-2xl font-bold">A map that stays honest.</h2></div><span className="rounded-full bg-[#f4f1e9] px-3 py-1 text-xs font-semibold text-[#68736e]">{issues.length} live record{issues.length === 1 ? "" : "s"}</span></div>
-      <div className="relative"><MapView className="map-surface h-[460px]" initialCenter={{ lat: 28.6139, lng: 77.2090 }} initialZoom={10} onMapReady={handleMapReady}/>{!issues.length && <div className="absolute bottom-5 left-5 right-5 z-10 rounded-3xl border border-[#d7d5ca]/80 bg-[#f7f5eb]/90 p-5 backdrop-blur-md"><div className="flex items-center gap-3"><span className="relative pulse-ring grid h-9 w-9 place-items-center rounded-full bg-[#195c51] text-white"><Map size={16}/></span><div><p className="font-semibold">{isLoading ? "Loading live records…" : "No reports found in this area yet."}</p><p className="text-sm text-[#68736e]">When real issues are reported, they will appear here with category and status.</p></div></div></div>}</div>
+      <div className="flex items-start justify-between p-6 md:p-8"><div><span className="rounded-full bg-[#e5eee7] px-3 py-1 text-xs font-bold tracking-[.16em] text-[#195c51]">GOOGLE MAPS · NCR / INDIA</span><h2 className="mt-4 font-display text-2xl font-bold">A map that stays honest.</h2></div><span className="rounded-full bg-[#f4f1e9] px-3 py-1 text-xs font-semibold text-[#68736e]">{showingDemo ? `${mapIssues.length} preview records` : `${issues.length} live record${issues.length === 1 ? "" : "s"}`}</span></div>
+      <div className="relative"><MapView className="map-surface h-[460px]" initialCenter={{ lat: 28.6139, lng: 77.2090 }} initialZoom={10} onMapReady={handleMapReady}/>{showingDemo && <div className="absolute bottom-5 left-5 right-5 z-10 rounded-3xl border border-[#e9a86a]/70 bg-[#fff7e8]/95 p-5 backdrop-blur-md"><div className="flex items-center gap-3"><span className="relative pulse-ring grid h-9 w-9 place-items-center rounded-full bg-[#e9a86a] text-[#28170b]"><Map size={16}/></span><div><p className="font-semibold">Demo preview data</p><p className="text-sm text-[#68736e]">These clearly labeled markers are examples only. Real reports will replace them when the database has live records.</p></div></div></div>}</div>
     </div>
-    <div className="surface-strong rounded-[28px] p-6 md:p-8"><p className="text-xs font-bold tracking-[.2em] text-[#195c51]">FILTERS</p><div className="mt-5 space-y-3"><button className="w-full rounded-2xl border border-[#195c51] bg-[#e5eee7] p-4 text-left"><p className="text-sm font-semibold">All NCR records</p><p className="mt-1 text-xs text-[#68736e]">Showing database-backed issues only</p></button>{["Status", "Category", "Severity", "Nearby me"].map(label => <button key={label} className="flex w-full items-center justify-between rounded-2xl border border-[#d7d5ca] p-4 text-left text-sm font-semibold"><span>{label}</span><span className="text-[#68736e]">⌄</span></button>)}</div><div className="mt-8 rounded-2xl bg-[#f4f1e9] p-4 text-sm text-[#68736e]"><p className="font-semibold text-[#101a19]">No fabricated markers.</p><p className="mt-1 leading-6">Map points come from coordinates captured with actual reports.</p></div></div>
+    <div className="surface-strong rounded-[28px] p-6 md:p-8"><p className="text-xs font-bold tracking-[.2em] text-[#195c51]">FILTERS</p><div className="mt-5 space-y-3"><button className="w-full rounded-2xl border border-[#195c51] bg-[#e5eee7] p-4 text-left"><p className="text-sm font-semibold">All NCR records</p><p className="mt-1 text-xs text-[#68736e]">{showingDemo ? "Showing labeled preview records" : "Showing database-backed issues only"}</p></button>{["Status", "Category", "Severity", "Nearby me"].map(label => <button key={label} className="flex w-full items-center justify-between rounded-2xl border border-[#d7d5ca] p-4 text-left text-sm font-semibold"><span>{label}</span><span className="text-[#68736e]">⌄</span></button>)}</div><div className="mt-8 rounded-2xl bg-[#f4f1e9] p-4 text-sm text-[#68736e]"><p className="font-semibold text-[#101a19]">{showingDemo ? "Preview mode is on." : "No fabricated markers."}</p><p className="mt-1 leading-6">{showingDemo ? "Demo records are never saved as civic complaints." : "Map points come from coordinates captured with actual reports."}</p></div></div>
   </div>;
 }
 
