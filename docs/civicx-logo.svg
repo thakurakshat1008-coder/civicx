@@ -1,0 +1,23 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="70" x2="880" y2="950" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#195C51"/>
+      <stop offset="1" stop-color="#0C3D35"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="320" y1="240" x2="710" y2="790" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E9A86A"/>
+      <stop offset="1" stop-color="#F5D5AE"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#0C3D35" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect x="86" y="86" width="852" height="852" rx="246" fill="url(#bg)" filter="url(#shadow)"/>
+  <path d="M700 321C642 264 562 238 478 251C326 274 214 405 214 563C214 742 359 887 538 887C604 887 666 868 720 835" stroke="#B7DED0" stroke-opacity="0.27" stroke-width="22" stroke-linecap="round"/>
+  <path d="M689 315C615 283 535 284 462 318C368 361 304 455 304 566C304 718 427 841 579 841C633 841 684 826 728 799" stroke="url(#glow)" stroke-width="54" stroke-linecap="round"/>
+  <path d="M568 333C523 342 486 379 472 425C449 501 492 564 556 608C612 646 632 682 614 730C598 773 557 797 510 792" stroke="#F7F5EB" stroke-width="62" stroke-linecap="round"/>
+  <circle cx="572" cy="333" r="34" fill="#F7F5EB"/>
+  <circle cx="510" cy="792" r="34" fill="#E9A86A"/>
+  <circle cx="784" cy="275" r="18" fill="#E9A86A"/>
+  <circle cx="834" cy="331" r="10" fill="#B7DED0"/>
+</svg>

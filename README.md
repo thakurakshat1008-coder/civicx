@@ -1,5 +1,5 @@
 <p align="center">
-<img src="civicx-logo.svg" alt="CivicX logo" width="150" />
+<img src="docs/civicx-logo.svg" alt="CivicX logo" width="150" />
 </p> <h1 align="center">CivicX</h1> <p align="center"><strong>Turn local problems into visible action.</strong></p> <p align="center">
   <a href="https://civicintel-gkvdzzdx.manus.space">Live website</a>
   ·
@@ -85,25 +85,25 @@ The following screenshots are captured from the current CivicX website. They sho
 
 The landing page introduces the CivicX model through a premium editorial interface: warm ivory surfaces, deep civic green, amber accents, responsive motion, and a map visual that makes the product direction immediately understandable without inventing reports.
 
-![CivicX landing page](https://private-us-east-1.manuscdn.com/sessionFile/Y423dHfIcqtOwsiJ612qv3/sandbox/98XF06QrRXFdDiC90TX71L-images_1788690771269_na1fn_L2hvbWUvdWJ1bnR1L2NpdmljeC1yZWFkbWUtcmV2aWV3L3NjcmVlbnNob3RzL2xhbmRpbmc.png?Expires=1788863625&Signature=MEQCIFnKTjToF63YspxYggg9Nhc3Vxg4vQBaxghMCKXYuQZcAiBw~sRvR7-Fnt7GZzTrzXj1MnQwQfCU0Hm3xkMMSgzSQw__&Key-Pair-Id=K1K5N5YNBUUMMN)
+![CivicX landing page](docs/screenshots/landing.png)
 
 ### 2. Interactive NCR map
 
 The map view is built around a legitimate Google Maps integration and database-backed issue markers. When no real issues exist, it displays a calm empty state instead of fake markers or artificial map activity.
 
-![CivicX NCR map](https://private-us-east-1.manuscdn.com/sessionFile/Y423dHfIcqtOwsiJ612qv3/sandbox/98XF06QrRXFdDiC90TX71L-images_1788690771269_na1fn_L2hvbWUvdWJ1bnR1L2NpdmljeC1yZWFkbWUtcmV2aWV3L3NjcmVlbnNob3RzL21hcA.png?Expires=1788863625&Signature=MEUCIQCZcNSHbyf8InY6s-1pZbg0Wi-yhRRqticpaM~hoLfjkQIgfWqoPwNDj7-Xq-EoXemLdGM5fCOph42ejXWqqAjfzCc_&Key-Pair-Id=K1K5N5YNBUUMMN)
+![CivicX NCR map](docs/screenshots/map.png)
 
 ### 3. Guided report form
 
 The multi-step report flow helps a resident add context, choose a category and severity, upload an optional image, capture their current location, select privacy preferences, and submit a real record.
 
-![CivicX report form](https://private-us-east-1.manuscdn.com/sessionFile/Y423dHfIcqtOwsiJ612qv3/sandbox/98XF06QrRXFdDiC90TX71L-images_1788690771269_na1fn_L2hvbWUvdWJ1bnR1L2NpdmljeC1yZWFkbWUtcmV2aWV3L3NjcmVlbnNob3RzL3JlcG9ydC1mb3Jt.png?Expires=1788863625&Signature=MEYCIQDg2nqdp2PICTYiy0gR69ZYYhsGcZtzBRJriHoey5Wr6wIhAMfUtoNGfPeKCNyLdS7TL3l~8H43Xu2BynhKWfJ03bVq&Key-Pair-Id=K1K5N5YNBUUMMN)
+![CivicX report form](docs/screenshots/report-form.png)
 
 ### 4. Civic pulse analytics
 
 The analytics surface is designed to be transparent from its first record. When the database is empty, the dashboard explains that analytics will appear as the community begins reporting issues and shows no invented chart bars.
 
-![CivicX civic pulse analytics](https://private-us-east-1.manuscdn.com/sessionFile/Y423dHfIcqtOwsiJ612qv3/sandbox/98XF06QrRXFdDiC90TX71L-images_1788690771269_na1fn_L2hvbWUvdWJ1bnR1L2NpdmljeC1yZWFkbWUtcmV2aWV3L3NjcmVlbnNob3RzL2FuYWx5dGljcw.png?Expires=1788863625&Signature=MEUCIG-HWZjL8VZ2j0aQUcLV7HdRXmr4fMeA~5zh1TcGJAR3AiEAsfcXpkMkIENk6wRJ31fkgvKXfDO5Z9F36FHICJbDud4_&Key-Pair-Id=K1K5N5YNBUUMMN)
+![CivicX civic pulse analytics](docs/screenshots/analytics.png)
 
 ---
 
@@ -739,5 +739,5 @@ This README is a **review draft** prepared separately from the GitHub repository
 If the draft is approved, the next step is to copy the README, logo, and four screenshot assets into the repository and create a dedicated documentation commit.
 
 <p align="center">
-<img src="civicx-logo.svg" alt="CivicX logo" width="96" />
+<img src="docs/civicx-logo.svg" alt="CivicX logo" width="96" />
 </p> <p align="center"><strong>See a problem. Report it. Make your community heard.</strong></p>
